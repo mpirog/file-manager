@@ -1,7 +1,7 @@
 import path from 'path';
 import Command from './Command.js';
 
-class up extends Command {
+class cd extends Command {
   constructor(args) {
     super(args);
   }
@@ -13,4 +13,4 @@ class up extends Command {
   }
 }
 
-export default up;
+export default cd;
