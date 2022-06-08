@@ -2,7 +2,7 @@ import path from 'path';
 import fs from 'fs/promises';
 import Command from './Command.js';
 
-class rn extends Command {
+class cp extends Command {
   constructor(args) {
     super(args);
   }
@@ -28,4 +28,4 @@ class rn extends Command {
   }
 }
 
-export default rn;
+export default cp;
