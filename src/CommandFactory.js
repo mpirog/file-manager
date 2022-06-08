@@ -3,6 +3,8 @@ import cd from "./cd.js";
 import ls from "./ls.js";
 import cat from "./cat.js";
 import add from "./add.js";
+import rn from "./rn.js";
+
 class CommandFactory {
   constructor(param) {
     const params = param.split(' ');
@@ -26,7 +28,10 @@ class CommandFactory {
 
       case 'add':
         return new add(this._args);
+
       case 'rn':
+        return new rn(this._args);
+
       case 'cp':
       case 'mv':
       case 'rm':
