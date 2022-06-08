@@ -2,7 +2,7 @@ import path from 'path';
 import fs from 'fs/promises';
 import Command from './Command.js';
 
-class cat extends Command {
+class add extends Command {
   constructor(args) {
     super(args);
   }
@@ -10,12 +10,10 @@ class cat extends Command {
   async run() {
     const sourceFilePath = path.resolve(this._currentDirPath, this._args.join(' '));
 
-    const data = await fs.readFile(sourceFilePath);
-
-    console.log(data.toString());
+    const data = await fs.writeFile(sourceFilePath, '');
     
     return true;
   }
 }
 
-export default cat;
+export default add;

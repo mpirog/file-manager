@@ -7,6 +7,7 @@ import { getUserName } from './src/user.js';
 import CommandFactory from './src/CommandFactory.js';
 
 const currentDerictory = os.homedir();
+// const currentDerictory = 'd:/разное/corss-check/virtual-keyboard/';// todo remove
 
 const userName = getUserName();
 
