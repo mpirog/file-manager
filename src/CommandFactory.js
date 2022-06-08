@@ -6,6 +6,7 @@ import add from "./add.js";
 import rn from "./rn.js";
 import cp from "./cp.js";
 import mv from "./mv.js";
+import rm from "./rm.js";
 
 class CommandFactory {
   constructor(param) {
@@ -41,6 +42,8 @@ class CommandFactory {
         return new mv(this._args);
 
       case 'rm':
+        return new rm(this._args);
+
       case 'os':
       case 'hash':
       case 'compress':

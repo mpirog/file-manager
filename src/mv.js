@@ -1,18 +1,16 @@
 import path from 'path';
-import fs from 'fs/promises';
-import cp from './cp.js';
+import File from './File.js';
 
-class mv extends cp {
+class mv extends File {
   constructor(args) {
     super(args);
   };
 
   async run() {
     const oldPath = path.resolve(this._currentDirPath, this._args[0]);
-    
-    await super.run();
+    const newPath = path.join(this._currentDirPath, this._args[1]);
 
-    await fs.rm(oldPath);
+    this.move(oldPath, newPath);
     
     return true;
   };
