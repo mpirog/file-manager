@@ -7,8 +7,8 @@ class up extends Command {
   }
 
   async run() {
-    // console.log('command up!')
-    await this.setDirPath(path.resolve(this._currentDirPath, '../'));
+    // console.log('command cd!')
+    await this.setDirPath(path.resolve(this._currentDirPath, this._args.join(' ')));
     return true;
   }
 }

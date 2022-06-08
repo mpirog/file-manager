@@ -1,4 +1,5 @@
 import up from "./up.js";
+import cd from "./cd.js";
 
 class CommandFactory {
   constructor(param) {
@@ -13,6 +14,8 @@ class CommandFactory {
         return new up(this._args);
 
       case 'cd':
+        return new cd(this._args);
+
       case 'ls':
       case 'cat':
       case 'add':

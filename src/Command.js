@@ -1,4 +1,5 @@
 import os from 'os';
+import fs from 'fs/promises'; 
 
 class Command {
   constructor(args) {
@@ -10,9 +11,16 @@ class Command {
 
     this._currentDirPath = os.homedir();
   }
-
-  setDirPath(path) {
-    this._currentDirPath = path;
+  
+  async setDirPath(pathDir) {
+    const lstat = await fs.lstat(pathDir);
+    
+    if (!lstat.isDirectory()) {
+      throw new Error('Directory was not found!');
+    }
+    
+    this._currentDirPath = pathDir;
+    return this;
   };
 
   getDirPath() {
@@ -23,9 +31,9 @@ class Command {
     return true;
   };
 
-  runCommand() {
+  async runCommand() {
     this.checkArguments();
-    this.run();
+    await this.run();
     return this;
   };
 };

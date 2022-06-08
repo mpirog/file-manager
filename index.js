@@ -14,23 +14,23 @@ output.write(`Welcom to file Manager, ${userName}\n`);
 
 const rl = readline.createInterface({ input, output });
 
-const query = async (currentDerictory) => {
-  output.write(`You are currently in ${currentDerictory}\n`);
+const query = (dirPath) => {
+  output.write(`You are currently in ${dirPath}\n`);
 
-  rl.question(`${currentDerictory}:>> `, (command) => {
+  rl.question(`${dirPath}:>> `, async (command) => {
     try {
       const inst = new CommandFactory(command).getInstance();
       
-      inst.setDirPath(currentDerictory);
-      inst.runCommand();
+      await inst.setDirPath(dirPath);
+      await inst.runCommand();
 
-      currentDerictory = inst.getDirPath();
+      dirPath = inst.getDirPath();
 
-      query(currentDerictory);
+      query(dirPath);
     } catch(err) {
-      output.write(`${err.message}\n`)
+      output.write(`ERROR: ${err.message}\n`);
 
-      query(currentDerictory);
+      query(dirPath);
     }
   });
 };
