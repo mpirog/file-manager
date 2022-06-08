@@ -31,4 +31,4 @@ class CommandFactory {
   }
 }
 
-export default Collector;
+export default CommandFactory;
