@@ -4,6 +4,7 @@ import ls from "./ls.js";
 import cat from "./cat.js";
 import add from "./add.js";
 import rn from "./rn.js";
+import cp from "./cp.js";
 
 class CommandFactory {
   constructor(param) {
@@ -33,6 +34,8 @@ class CommandFactory {
         return new rn(this._args);
 
       case 'cp':
+        return new cp(this._args);
+
       case 'mv':
       case 'rm':
       case 'os':
