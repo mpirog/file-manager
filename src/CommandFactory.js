@@ -8,6 +8,7 @@ import cp from "./cp.js";
 import mv from "./mv.js";
 import rm from "./rm.js";
 import os from "./os.js";
+import hash from "./hash.js";
 
 class CommandFactory {
   constructor(param) {
@@ -49,6 +50,8 @@ class CommandFactory {
         return new os(this._args);
 
       case 'hash':
+        return new hash(this._args);
+
       case 'compress':
       case 'decompress':
 

@@ -1,5 +1,4 @@
 import path from 'path';
-import fs from 'fs/promises';
 import File from './File.js';
 
 class cp extends File {
