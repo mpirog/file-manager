@@ -25,7 +25,7 @@ class File extends Command {
     await fs.copyFile(oldPath, newFilePath);
     
     return true;
-  }
+  };
 
   async move(oldPath, newPath) {
     await this.copy(oldPath, newPath);

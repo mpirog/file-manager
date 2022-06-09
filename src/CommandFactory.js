@@ -9,6 +9,7 @@ import mv from "./mv.js";
 import rm from "./rm.js";
 import os from "./os.js";
 import hash from "./hash.js";
+import zip from "./zip.js";
 
 class CommandFactory {
   constructor(param) {
@@ -53,7 +54,10 @@ class CommandFactory {
         return new hash(this._args);
 
       case 'compress':
+        return new zip(this._args, true);
+
       case 'decompress':
+        return new zip(this._args, false);
 
       default:
         throw new Error('Command was no defined')
