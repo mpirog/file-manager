@@ -5,7 +5,7 @@ import Command from './Command.js';
 class add extends Command {
   constructor(args) {
     super(args);
-  }
+  };
 
   async run() {
     const sourceFilePath = path.resolve(this._currentDirPath, this._args.join(' '));
@@ -13,7 +13,7 @@ class add extends Command {
     const data = await fs.writeFile(sourceFilePath, '');
     
     return true;
-  }
-}
+  };
+};
 
 export default add;

@@ -16,7 +16,7 @@ class CommandFactory {
     const params = param.split(' ');
     this._command = params[0];
     this._args = params.splice(1);
-  }
+  };
 
   getInstance() {
     switch (this._command) {
@@ -61,8 +61,8 @@ class CommandFactory {
 
       default:
         throw new Error('Command was no defined')
-    }
-  }
-}
+    };
+  };
+};
 
 export default CommandFactory;

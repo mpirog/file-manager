@@ -14,6 +14,6 @@ class mv extends File {
     
     return true;
   };
-}
+};
 
 export default mv;

@@ -6,7 +6,7 @@ import Command from './Command.js';
 class hash extends Command {
   constructor(args) {
     super(args);
-  }
+  };
 
   async run() {
     const sourceFilePath = path.resolve(this._currentDirPath, this._args.join(' '));
@@ -20,7 +20,7 @@ class hash extends Command {
     console.log('\x1b[32m%s\x1b[0m', hash.digest('hex'));
     
     return true;
-  }
-}
+  };
+};
 
 export default hash;

@@ -10,7 +10,7 @@ class Command {
     }
 
     this._currentDirPath = os.homedir();
-  }
+  };
 
   async checkDirectory(pathDir) {
     const lstat = await fs.lstat(pathDir);
@@ -18,7 +18,7 @@ class Command {
     if (!lstat.isDirectory()) {
       throw new Error('Directory was not found!');
     }
-  }
+  };
   
   async setDirPath(pathDir) {
     await this.checkDirectory(pathDir);
@@ -29,7 +29,7 @@ class Command {
 
   getDirPath() {
     return this._currentDirPath;
-  }
+  };
 
   checkArguments() {
     return true;

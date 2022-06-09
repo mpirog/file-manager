@@ -5,7 +5,7 @@ import Command from './Command.js';
 class rn extends Command {
   constructor(args) {
     super(args);
-  }
+  };
 
   async run() {
     const oldPath = path.resolve(this._currentDirPath, this._args[0]);
@@ -14,7 +14,7 @@ class rn extends Command {
     const data = await fs.rename(oldPath, newPath);
     
     return true;
-  }
-}
+  };
+};
 
 export default rn;

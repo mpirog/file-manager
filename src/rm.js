@@ -13,6 +13,6 @@ class rm extends File {
     
     return true;
   };
-}
+};
 
 export default rm;

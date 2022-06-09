@@ -4,7 +4,7 @@ import Command from './Command.js';
 class ls extends Command {
   constructor(args) {
     super(args);
-  }
+  };
 
   async run() {
     await this.checkDirectory(this._currentDirPath);
@@ -15,7 +15,7 @@ class ls extends Command {
     });
     
     return true;
-  }
-}
+  };
+};
 
 export default ls;

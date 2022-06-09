@@ -4,7 +4,7 @@ import Command from './Command.js';
 class os extends Command {
   constructor(args) {
     super(args);
-  }
+  };
 
   async run() {
     switch (this._args[0]) {
@@ -41,7 +41,7 @@ class os extends Command {
     }
     
     return true;
-  }
-}
+  };
+};
 
 export default os;

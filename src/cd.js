@@ -4,7 +4,7 @@ import Command from './Command.js';
 class cd extends Command {
   constructor(args) {
     super(args);
-  }
+  };
 
   async run() {
     const args = this._args.reduce((collector, arg) => {
@@ -19,7 +19,7 @@ class cd extends Command {
 
     await this.setDirPath(path.resolve(this._currentDirPath, args.join(' ')));
     return true;
-  }
-}
+  };
+};
 
 export default cd;

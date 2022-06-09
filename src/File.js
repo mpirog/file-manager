@@ -15,7 +15,7 @@ class File extends Command {
     try { 
       await fs.mkdir(newPath);
     } catch {} 
-  }
+  };
 
   async copy(oldPath, newPath) {
     await this._makeDirectory(newPath);
@@ -40,6 +40,6 @@ class File extends Command {
     
     return true;
   };
-}
+};
 
 export default File;
