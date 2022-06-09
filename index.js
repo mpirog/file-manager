@@ -1,26 +1,34 @@
 import os from 'os';
-// import { clc } from 'cli-color';
-
-// import path from 'path';
 import readline from 'readline';
 import { stdout as output, stdin as input } from 'process';
 
 import { getUserName } from './src/user.js';
 import CommandFactory from './src/CommandFactory.js';
 
-const currentDerictory = os.homedir();
-// const currentDerictory = 'd:/разное/corss-check/virtual-keyboard/';// todo remove
-
 const userName = getUserName();
 
-output.write(`Welcom to file Manager, ${userName}\n`);
+const currentDerictory = os.homedir();
+
+console.log('\x1b[36m%s\x1b[1m%s\x1b[0m', `Welcom to file Manager, `, `${userName}!`);
 
 const rl = readline.createInterface({ input, output });
 
+// ------ functions -----
+
+const exitApp = () => {
+  console.log('\x1b[36m%s\x1b[1m%s\x1b[0m', `\nThank you for using File Manager, `, `${userName}!`);
+  process.exit(0);
+};
+
 const query = (dirPath) => {
-  console.log('\x1b[33m%s\x1b[0m', `You are currently in ${dirPath}`);
+  console.log('\x1b[33m%s\x1b[32m%s\x1b[0m', `You are currently in `, dirPath);
 
   rl.question(`${dirPath}:>> `, async (command) => {
+    if (command.toString().trim() === '.exit') {
+      exitApp();
+      return;
+    }
+
     try {
       const inst = new CommandFactory(command).getInstance();
       
@@ -38,4 +46,7 @@ const query = (dirPath) => {
   });
 };
 
+rl.on('SIGINT', exitApp);
+
+// ------ start ------
 query(currentDerictory);
