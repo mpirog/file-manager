@@ -7,11 +7,12 @@ class ls extends Command {
   }
 
   async run() {
-    // console.log('command ls!')
     await this.checkDirectory(this._currentDirPath);
-    const fiels = await fs.readdir(this._currentDirPath, 'utf8');
+    const files = await fs.readdir(this._currentDirPath, 'utf8');
 
-    console.log(fiels)
+    files.forEach((file) => {
+      console.log('\x1b[32m%s\x1b[0m', file);
+    });
     
     return true;
   }

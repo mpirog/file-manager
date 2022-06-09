@@ -1,4 +1,6 @@
 import os from 'os';
+// import { clc } from 'cli-color';
+
 // import path from 'path';
 import readline from 'readline';
 import { stdout as output, stdin as input } from 'process';
@@ -16,7 +18,7 @@ output.write(`Welcom to file Manager, ${userName}\n`);
 const rl = readline.createInterface({ input, output });
 
 const query = (dirPath) => {
-  output.write(`You are currently in ${dirPath}\n`);
+  console.log('\x1b[33m%s\x1b[0m', `You are currently in ${dirPath}`);
 
   rl.question(`${dirPath}:>> `, async (command) => {
     try {
@@ -28,8 +30,8 @@ const query = (dirPath) => {
       dirPath = inst.getDirPath();
 
       query(dirPath);
-    } catch(err) {
-      output.write(`ERROR: ${err.message}\n`);
+    } catch (err) {
+      console.log('\x1b[31m%s\x1b[0m', `ERROR: ${err.message}\n`);
 
       query(dirPath);
     }

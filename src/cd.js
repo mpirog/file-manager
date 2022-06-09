@@ -7,8 +7,17 @@ class cd extends Command {
   }
 
   async run() {
-    // console.log('command cd!')
-    await this.setDirPath(path.resolve(this._currentDirPath, this._args.join(' ')));
+    const args = this._args.reduce((collector, arg) => {
+      arg = arg.trim();
+
+      if (arg) {
+        collector.push(arg);
+      }
+
+      return collector;
+    }, []);
+
+    await this.setDirPath(path.resolve(this._currentDirPath, args.join(' ')));
     return true;
   }
 }

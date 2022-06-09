@@ -17,7 +17,7 @@ class hash extends Command {
 
     hash.update(data);
 
-    console.log(hash.digest('hex'));
+    console.log('\x1b[32m%s\x1b[0m', hash.digest('hex'));
     
     return true;
   }
