@@ -7,11 +7,24 @@ class mv extends File {
   };
 
   async run() {
-    const oldPath = path.resolve(this._currentDirPath, this._args[0]);
+    let newPath;
+    let oldPath;
+
+    const args = this.prepareArguments(this._args);
+
+    try {
+      oldPath = path.resolve(this._currentDirPath, args[0]);
+    } catch (err) {
+      throw new Error(`Invalid input: ${err.message}`);
+    }
+
+    try {
+      newPath = path.join(this._currentDirPath, args[1]);
+    } catch (err) {
+      throw new Error(`Invalid input: ${err.message}`);
+    }
     
     try {
-      const newPath = path.join(this._currentDirPath, this._args[1]);
-      
       await this.move(oldPath, newPath);
     } catch (err) {
       throw new Error(`Invalid input: ${err.message}`);

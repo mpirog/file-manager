@@ -8,10 +8,18 @@ class cp extends File {
 
   async run() {
     let newPath;
-    const oldPath = path.resolve(this._currentDirPath, this._args[0]);
-    
+    let oldPath;
+
+    const args = this.prepareArguments(this._args);
+ 
     try {
-      newPath = path.join(this._currentDirPath, this._args[1]);
+      oldPath = path.resolve(this._currentDirPath, args[0]);
+    } catch (err) {
+      throw new Error(`Invalid input: ${err.message}`);
+    }
+
+    try {
+      newPath = path.join(this._currentDirPath, args[1]);
     } catch (err) {
       throw new Error(`Invalid input: ${err.message}`);
     }

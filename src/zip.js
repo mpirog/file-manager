@@ -15,7 +15,9 @@ class zip extends Command {
   async _makeDirectory(newPath) {
     try { 
       await fs.mkdir(newPath);
-    } catch {} 
+    } catch {
+      // console.log('DIR E')
+    } 
   };
 
   async _pipelineProcess(sourceFilePath, destinationFilePath, bzip) {
@@ -30,9 +32,20 @@ class zip extends Command {
   };
 
   async run() {
-    const sourceFilePath = path.resolve(this._currentDirPath, this._args[0]);
-    const newPath = path.join(this._currentDirPath, this._args[1] || '');
+    let sourceFilePath;
+
+    const args = this.prepareArguments(this._args);
+
+    try {
+      sourceFilePath = path.resolve(this._currentDirPath, args[0]);
+    } catch (err) {
+      throw new Error(`Invalid input: ${err.message}`);
+    }
+
+    await this.checkFilePath(sourceFilePath);
     
+    const newPath = path.join(this._currentDirPath, args[1] || '');
+   
     await this._makeDirectory(newPath);
 
     let fileName = this._args[0];

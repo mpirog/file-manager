@@ -1,7 +1,7 @@
 export const getUserName = () => {  
   let userName = null;
 
-  const args = process.argv.slice(2).forEach((value) => {
+  process.argv.slice(2).forEach((value) => {
     const val = value.split('=');
 
     if (val[0] === '--username') {

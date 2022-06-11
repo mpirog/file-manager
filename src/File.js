@@ -2,6 +2,7 @@ import path from 'path';
 import fs from 'fs/promises';
 import { createReadStream, createWriteStream } from 'fs';
 import { pipeline } from 'node:stream/promises';
+import { createHash } from 'crypto';
 import Command from './Command.js';
 
 class File extends Command {
@@ -19,6 +20,24 @@ class File extends Command {
     } catch (err) {
       // console.log(err)
     } 
+  };
+
+  async createEmptyFile(sourceFilePath) {
+    await fs.writeFile(sourceFilePath, '');
+  };  
+
+  readFile(sourceFilePath) {
+    return new Promise(resolve => {
+      const sourceReadStream = createReadStream(sourceFilePath);
+      
+      sourceReadStream
+        .on('data', (chank) => {
+          console.log('\x1b[35m%s\x1b[0m', chank.toString());
+        })
+        .on('end', () => {
+          resolve();
+        });
+    });
   };
 
   async copy(oldPath, newPath) {
@@ -54,6 +73,22 @@ class File extends Command {
 
   async remove(sourcePath) {
     await fs.rm(sourcePath);
+  };
+
+  calcHash(sourceFilePath) {
+    const hash = createHash("sha256");
+
+    return new Promise(resolve => {
+      const sourceReadStream = createReadStream(sourceFilePath);
+      
+      sourceReadStream
+        .on('data', (chank) => {
+          hash.update(chank);
+        })
+        .on('end', () => {
+          resolve(hash)
+        });
+    });
   };
 };
 

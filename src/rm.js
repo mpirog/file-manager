@@ -7,9 +7,18 @@ class rm extends File {
   };
 
   async run() {
-    const sourcePath = path.resolve(this._currentDirPath, this._args[0]);
+    let sourcePath;
+    const args = this.prepareArguments(this._args);
 
-    this.remove(sourcePath);
+    try {
+      sourcePath = path.resolve(this._currentDirPath, this._args[0])
+    } catch (err) {
+      throw new Error(`Invalid input: ${err.message}`);
+    }
+
+    await this.checkFilePath(sourcePath)
+
+    await this.remove(sourcePath);
   };
 };
 

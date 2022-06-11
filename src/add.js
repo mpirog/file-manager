@@ -1,16 +1,21 @@
 import path from 'path';
-import fs from 'fs/promises';
-import Command from './Command.js';
+import File from './File.js';
 
-class add extends Command {
+class add extends File {
   constructor(args) {
     super(args);
   };
 
   async run() {
-    const sourceFilePath = path.resolve(this._currentDirPath, this._args.join(' '));
+    const args = this.prepareArguments(this._args);
 
-    const data = await fs.writeFile(sourceFilePath, '');
+    const sourceFilePath = path.resolve(this._currentDirPath, args.join(' '));
+
+    try {
+      await this.createEmptyFile(sourceFilePath);
+    } catch (err) {
+      throw new Error(`Invalid input: ${err.message}`);
+    }
   };
 };
 

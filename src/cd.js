@@ -7,15 +7,7 @@ class cd extends Command {
   };
 
   async run() {
-    const args = this._args.reduce((collector, arg) => {
-      arg = arg.trim();
-
-      if (arg) {
-        collector.push(arg);
-      }
-
-      return collector;
-    }, []);
+    const args = this.prepareArguments(this._args);
 
     await this.setDirPath(path.resolve(this._currentDirPath, args.join(' ')));
   };

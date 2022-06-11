@@ -47,11 +47,29 @@ class Command {
 
   async checkFilePath(sourceFilePath) {
     try {
-      await fs.lstat(sourceFilePath);
+      const stat = await fs.lstat(sourceFilePath);
+
+      if (!stat.isFile()) {
+        throw Error('File not found!');
+      }
     } catch (err) {
-      throw new Error(`Invalid input: ${err.message}`);
+        throw new Error(`Invalid input: ${err.message}`);
     }
-  }
+  };
+
+  prepareArguments(data) {
+    const args = data.reduce((collector, arg) => {
+      arg = arg.trim();
+
+      if (arg) {
+        collector.push(arg);
+      }
+
+      return collector;
+    }, []);
+
+    return args;
+  };
 };
 
 export default Command;
