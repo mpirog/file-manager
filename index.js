@@ -20,7 +20,7 @@ const exitApp = () => {
   process.exit(0);
 };
 
-const query = (dirPath) => {
+const query = async (dirPath) => {
   console.log('\x1b[33m%s\x1b[32m%s\x1b[0m', `You are currently in `, dirPath);
 
   rl.question(`${dirPath}:>> `, async (command) => {
@@ -37,11 +37,11 @@ const query = (dirPath) => {
 
       dirPath = inst.getDirPath();
 
-      query(dirPath);
+      await query(dirPath);
     } catch (err) {
-      console.log('\x1b[31m%s\x1b[0m', `ERROR: ${err.message}\n`);
+      console.log('\x1b[31m%s\x1b[0m', err.message);
 
-      query(dirPath);
+      await query(dirPath);
     }
   });
 };

@@ -21,8 +21,7 @@ class os extends Command {
         break;
 
       case '--EOL':
-        const marker = EOL.replace("\r", '\\r').replace("\n", '\\n');
-        console.log('\x1b[32m%s\x1b[33m%s\x1b[0m', `Default system End-Of-Line: `, marker);
+        console.log('\x1b[32m%s\x1b[33m%s\x1b[0m', `Default system End-Of-Line: `, JSON.stringify(EOL));
         break;
         
       case '--cpus':

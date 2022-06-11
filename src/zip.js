@@ -50,8 +50,12 @@ class zip extends Command {
     const destinationFilePath = path.resolve(newPath, fileName);
 
     const bzip = this._isCompressMode ? BrotliCompress() : BrotliDecompress();
-
-    await this._pipelineProcess(sourceFilePath, destinationFilePath, bzip);
+    
+    try {
+      await this._pipelineProcess(sourceFilePath, destinationFilePath, bzip);
+    } catch (err) {
+      throw new Error(`Invalid input: ${err.message}`);
+    }
 
     return true;
   };

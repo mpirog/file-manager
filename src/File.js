@@ -1,5 +1,7 @@
 import path from 'path';
 import fs from 'fs/promises';
+import { createReadStream, createWriteStream } from 'fs';
+import { pipeline } from 'node:stream/promises';
 import Command from './Command.js';
 
 class File extends Command {
@@ -13,11 +15,28 @@ class File extends Command {
 
   async _makeDirectory(newPath) {
     try { 
-      await fs.mkdir(newPath);
-    } catch {} 
+      await fs.mkdir(newPath, {recursive: true});
+    } catch (err) {
+      // console.log(err)
+    } 
   };
 
   async copy(oldPath, newPath) {
+    await this._makeDirectory(newPath);
+    
+    const newFilePath = path.resolve(newPath, this._args[0]);
+    
+    const sourceReadStream = createReadStream(oldPath);
+    
+    const destinationWriteStream = createWriteStream(newFilePath);
+    
+    await pipeline(
+      sourceReadStream,
+      destinationWriteStream
+    );
+  };
+
+  async asyncCopy(oldPath, newPath) {
     await this._makeDirectory(newPath);
 
     const newFilePath = path.resolve(newPath, this._args[0]);

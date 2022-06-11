@@ -13,10 +13,14 @@ class Command {
   };
 
   async checkDirectory(pathDir) {
-    const lstat = await fs.lstat(pathDir);
+    try {
+      const lstat = await fs.lstat(pathDir);
     
-    if (!lstat.isDirectory()) {
-      throw new Error('Directory was not found!');
+      if (!lstat.isDirectory()) {
+        throw new Error('Invalid input: Directory was not found!');
+      }
+    } catch (err) {
+      throw new Error(`Invalid input: ${err.message}`);
     }
   };
   
@@ -40,6 +44,14 @@ class Command {
     await this.run();
     return this;
   };
+
+  async checkFilePath(sourceFilePath) {
+    try {
+      await fs.lstat(sourceFilePath);
+    } catch (err) {
+      throw new Error(`Invalid input: ${err.message}`);
+    }
+  }
 };
 
 export default Command;

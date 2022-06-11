@@ -60,7 +60,7 @@ class CommandFactory {
         return new zip(this._args, false);
 
       default:
-        throw new Error('Command was no defined')
+        throw new Error('Invalid input');
     };
   };
 };
