@@ -12,8 +12,6 @@ class rn extends Command {
     const newPath = path.resolve(this._currentDirPath, this._args[1]);
 
     const data = await fs.rename(oldPath, newPath);
-    
-    return true;
   };
 };
 

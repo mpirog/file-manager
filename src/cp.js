@@ -21,8 +21,6 @@ class cp extends File {
     } catch (err) {
       throw new Error(`Operation failed: ${err.message}`);
     }
-
-    return true;
   };
 };
 

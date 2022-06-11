@@ -38,8 +38,6 @@ class os extends Command {
       default:
         throw new Error('no such attribute');
     }
-    
-    return true;
   };
 };
 

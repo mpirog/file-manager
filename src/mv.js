@@ -16,8 +16,6 @@ class mv extends File {
     } catch (err) {
       throw new Error(`Invalid input: ${err.message}`);
     }
-    
-    return true;
   };
 };
 

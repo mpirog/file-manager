@@ -10,7 +10,7 @@ export const getUserName = () => {
   });
 
   if (!userName && typeof userName !== 'number') {
-    throw new Error('User name was not defined')
+    throw new Error('Invalid input: User name was not defined');
   }
 
   return userName;

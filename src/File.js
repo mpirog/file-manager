@@ -42,8 +42,6 @@ class File extends Command {
     const newFilePath = path.resolve(newPath, this._args[0]);
     
     await fs.copyFile(oldPath, newFilePath);
-    
-    return true;
   };
 
   async move(oldPath, newPath) {
@@ -56,8 +54,6 @@ class File extends Command {
 
   async remove(sourcePath) {
     await fs.rm(sourcePath);
-    
-    return true;
   };
 };
 

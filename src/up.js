@@ -8,7 +8,6 @@ class up extends Command {
 
   async run() {
     await this.setDirPath(path.resolve(this._currentDirPath, '../'));
-    return true;
   };
 };
 

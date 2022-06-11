@@ -13,8 +13,6 @@ class ls extends Command {
     files.forEach((file) => {
       console.log('\x1b[32m%s\x1b[0m', file);
     });
-    
-    return true;
   };
 };
 

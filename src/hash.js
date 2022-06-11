@@ -31,8 +31,6 @@ class hash extends Command {
     const hash = await this._calcHash(sourceFilePath);
 
     console.log('\x1b[32m%s\x1b[0m', hash.digest('hex'));
-    
-    return true;
   };
 };
 

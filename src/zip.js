@@ -56,8 +56,6 @@ class zip extends Command {
     } catch (err) {
       throw new Error(`Invalid input: ${err.message}`);
     }
-
-    return true;
   };
 };
 

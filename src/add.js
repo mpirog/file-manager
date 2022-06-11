@@ -11,8 +11,6 @@ class add extends Command {
     const sourceFilePath = path.resolve(this._currentDirPath, this._args.join(' '));
 
     const data = await fs.writeFile(sourceFilePath, '');
-    
-    return true;
   };
 };
 

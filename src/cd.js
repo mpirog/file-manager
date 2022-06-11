@@ -18,7 +18,6 @@ class cd extends Command {
     }, []);
 
     await this.setDirPath(path.resolve(this._currentDirPath, args.join(' ')));
-    return true;
   };
 };
 
